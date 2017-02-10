@@ -4,7 +4,4 @@ steps:
   cf-cli-run-composition:
     image: node:latest
     commands:
-      - ls
-      - npm install -g @codefresh-io/cf-cli
-      - cf-cli login --token ${{TOKEN}} -u ${{USER}}
-      - cf-cli compositions run --id "${{NAME_COMPOSITION}}"
+      - bash -c 'npm install -g @codefresh-io/cf-cli && cf-cli login --token ${{TOKEN}} -u ${{USER}} && cf-cli compositions run --id "${{NAME_COMPOSITION}}" '
