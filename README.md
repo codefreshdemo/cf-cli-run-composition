@@ -25,11 +25,7 @@ The Freestyle step basically let's you say "Hey, Codefresh! Here's a Docker imag
 cf-cli-run-composition:
     image: node:latest
     commands:
-      - ls
-      - npm install -g @codefresh-io/cf-cli
-      - cf-cli login --token ${{TOKEN}} -u ${{USER}}
-      - cf-cli compositions create --file compose-payload.json
-      - cf-cli compositions run --id "cf-cli-composition"
+      - bash -c 'npm install -g @codefresh-io/cf-cli && cf-cli login --token ${{TOKEN}} -u ${{USER}} && cf-cli compositions run --id "${{NAME_COMPOSITION}}" '
 ```
 
 The `image` field states which image should be used when creating the container (Similar to Travis CI's `language` or circleci`s `machine`).
@@ -133,4 +129,9 @@ services:
 * Select the `I have a Codefresh.yml file` option.
 * Complete the wizard.
 * Go to the pipeline and provide the environment variables
+
+<p align="center">
+  <img src="./images/codefresh_env_vars.png">
+</p>
+
 * Rejoice!
