@@ -1,7 +1,7 @@
 version: '1.0'
 steps:
   #create and launch a composition
-  cf-cli-create-composition:
+  cf-cli-run-composition:
     image: node:latest
     commands:
       - ls

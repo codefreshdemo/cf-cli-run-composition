@@ -22,12 +22,14 @@ To compile and test our code we use Codefresh's [Freestyle step](https://docs.co
 The Freestyle step basically let's you say "Hey, Codefresh! Here's a Docker image. Create a new container and run these commands for me, will ya?"
 
 ```yml
-cf-cli-step:
+cf-cli-run-composition:
     image: node:latest
     commands:
+      - ls
       - npm install -g @codefresh-io/cf-cli
       - cf-cli login --token ${{TOKEN}} -u ${{USER}}
-      - cf-cli builds build -a ${{ACCOUNT}} -o ${{REPO_OWNER}} -r ${{REPO_NAME}} --branch ${{BRANCH}} --pipelineName ${{PIPELINE_NAME}}
+      - cf-cli compositions create --file compose-payload.json
+      - cf-cli compositions run --id "cf-cli-composition"
 ```
 
 The `image` field states which image should be used when creating the container (Similar to Travis CI's `language` or circleci`s `machine`).
@@ -101,7 +103,7 @@ $ cf-cli compositions run [options]
 | Option         | Alias | Demand | Type | Description |
 | ----------------  |:-----:|:------:|:----:|:-----------|
 | --token          |       |          | string | access token |
-| --id             |       | required | string | id of composition |
+| --id             |       | required | string | id or name of composition |
 | --vars           |       |          | string | composition variables. Format [{"key":"","value":""}]; default: [] |
 | --tokenFile      |       |          | string | access token file, default: "$HOME.codefresh/accessToken.json" |
 | --logLevel       | --log |          | string | choices: "error", "info", "debug"; default: "error" |
