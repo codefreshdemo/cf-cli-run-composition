@@ -7,5 +7,4 @@ steps:
       - ls
       - npm install -g @codefresh-io/cf-cli
       - cf-cli login --token ${{TOKEN}} -u ${{USER}}
-      - cf-cli compositions create --file compose-payload.json
-      - cf-cli compositions run --id "cf-cli-composition"
+      - cf-cli compositions run --id "${{NAME_COMPOSITION}}"

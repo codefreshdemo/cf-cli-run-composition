@@ -116,6 +116,18 @@ To use this example:
 
 * Fork this repository to your own [INSERT_SCM_SYSTEM (git, bitbucket)] account.
 * Log in to Codefresh using your [INSERT_SCM_SYSTEM (git, bitbucket)] account.
+* Go to compositions and create a composition with name "cf-cli-composition" and context of
+
+```yml
+version: '2'
+services:
+  express-angular-master:
+    image: 'codefreshio/express-angular:master'
+    ports:
+      - 9000
+```
+
+* Save this composition
 * Click the `Add Service` button.
 * Select the forked repository.
 * Select the `I have a Codefresh.yml file` option.
