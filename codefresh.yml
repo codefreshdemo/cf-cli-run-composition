@@ -1,0 +1,11 @@
+version: '1.0'
+steps:
+  #create and launch a composition
+  cf-cli-create-composition:
+    image: node:latest
+    commands:
+      - ls
+      - npm install -g @codefresh-io/cf-cli
+      - cf-cli login --token ${{TOKEN}} -u ${{USER}}
+      - cf-cli compositions create --file compose-payload.json
+      - cf-cli compositions run --id ""
